@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mysql-reporteCiudadano:
+    image: mysql:8
+    container_name: mysql-reporteCiudadano
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: reporteCiudadano
+      MYSQL_USER: reporteciudadanouser
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
