@@ -69,7 +69,7 @@ import { TiposReporte } from './reportes/entities/tipos-reporte.entity';
           ComentariosReportes,
           ComunicadosModule,
         ],
-        synchronize: true,
+        synchronize: false,
       }),
       inject: [ConfigService],
     }),
