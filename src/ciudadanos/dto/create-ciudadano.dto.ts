@@ -16,7 +16,7 @@ export class CreateCiudadanoDto {
   })
   @IsString()
   @IsOptional()
-  nombres: string;
+  nombres?: string;
 
   @ApiProperty({
     description: 'El apellido del ciudadano',
@@ -24,7 +24,7 @@ export class CreateCiudadanoDto {
   })
   @IsString()
   @IsOptional()
-  apellidos: string;
+  apellidos?: string;
 
   @ApiProperty({
     description: 'El apodo del ciudadano',
@@ -40,7 +40,7 @@ export class CreateCiudadanoDto {
   })
   @IsString()
   @IsOptional()
-  prefijoTelefono: string;
+  prefijoTelefono?: string;
 
   @ApiProperty({
     description: 'El teléfono del ciudadano',
@@ -48,7 +48,7 @@ export class CreateCiudadanoDto {
   })
   @IsString()
   @IsOptional()
-  telefono: string;
+  telefono?: string;
 
   @ApiProperty({
     description: 'El password del ciudadano',
@@ -73,5 +73,5 @@ export class CreateCiudadanoDto {
   })
   @IsEnum(Rol)
   @IsOptional()
-  roles: Rol[];
+  roles?: Rol[];
 }

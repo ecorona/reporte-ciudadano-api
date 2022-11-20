@@ -34,11 +34,11 @@ async function bootstrap() {
     defaultVersion: ['1'],
   });
 
-  //obtener el environment de ejecución
-  const environment = configService.get('NODE_ENV');
-
-  //en desarrollo levantar swagger
-  if (environment === 'development') {
+  //en desarrollo y testing levantar swagger
+  if (
+    ['development', 'testing'].indexOf(configService.get<string>('NODE_ENV')) >
+    -1
+  ) {
     //obtener valores del package.json
     const appPackage = JSON.parse(readFileSync('package.json').toString());
 

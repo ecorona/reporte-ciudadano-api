@@ -22,6 +22,7 @@ import { Reporte } from './reportes/entities/reporte.entity';
 import { BitacoraReportes } from './reportes/entities/bitacora-reportes.entity';
 import { ComentariosReportes } from './reportes/entities/comentarios-reportes.entity';
 import { TiposReporte } from './reportes/entities/tipos-reporte.entity';
+import { TypeOrmExceptionFilter } from './database/filters/typeorm-exception.filter';
 
 @Module({
   imports: [
@@ -98,6 +99,10 @@ import { TiposReporte } from './reportes/entities/tipos-reporte.entity';
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: TypeOrmExceptionFilter,
     },
     {
       provide: APP_FILTER,

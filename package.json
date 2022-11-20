@@ -26,9 +26,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
     "mig:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ormconfig.ts -o",
-    "mig:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts"
+    "mig:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
+    "mig:rev": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ormconfig.ts"
   },
   "dependencies": {
     "@casl/ability": "^5.4.4",

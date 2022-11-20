@@ -1,5 +1,5 @@
 import { Ciudadano } from './../ciudadanos/entities/ciudadano.entity';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginCiudadanoResponse } from './dto/login-ciudadano-response.dto';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayloadDTO } from './dto/jwt-payload.dto';
@@ -20,6 +20,9 @@ export class AuthService {
     const ciudadanoEntrando = await this.ciudadanoService.getByEmail(
       email.toLowerCase(),
     );
+    if (!ciudadanoEntrando) {
+      throw new UnauthorizedException();
+    }
     const passwordMatch = await this.ciudadanoService.validarPassword(
       password,
       ciudadanoEntrando.password,
