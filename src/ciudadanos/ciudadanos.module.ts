@@ -15,6 +15,6 @@ import { Ciudadano } from './entities/ciudadano.entity';
     CiudadanosService,
     CaslCiudadanoAbilityFactory,
   ],
-  exports: [CiudadanoRepository, CiudadanosService],
+  exports: [CiudadanoRepository, CiudadanosService, TypeOrmModule],
 })
 export class CiudadanosModule {}

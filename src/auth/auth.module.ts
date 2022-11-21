@@ -25,5 +25,6 @@ import { CaslModule } from './casl/casl.module';
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
+  exports: [AuthService],
 })
 export class AuthModule {}

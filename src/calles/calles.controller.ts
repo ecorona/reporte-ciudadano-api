@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CallesService } from './calles.service';
 import { CreateCalleDto } from './dto/create-calle.dto';
 import { UpdateCalleDto } from './dto/update-calle.dto';
 
 @Controller('calles')
+@ApiTags('calles')
 export class CallesController {
   constructor(private readonly callesService: CallesService) {}
 

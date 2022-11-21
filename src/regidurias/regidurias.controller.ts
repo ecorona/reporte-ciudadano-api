@@ -1,9 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { RegiduriasService } from './regidurias.service';
 import { CreateRegiduriaDto } from './dto/create-regiduria.dto';
 import { UpdateRegiduriaDto } from './dto/update-regiduria.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('regidurias')
+@ApiTags('regidurias')
 export class RegiduriasController {
   constructor(private readonly regiduriasService: RegiduriasService) {}
 
@@ -23,7 +33,10 @@ export class RegiduriasController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRegiduriaDto: UpdateRegiduriaDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateRegiduriaDto: UpdateRegiduriaDto,
+  ) {
     return this.regiduriasService.update(+id, updateRegiduriaDto);
   }
 

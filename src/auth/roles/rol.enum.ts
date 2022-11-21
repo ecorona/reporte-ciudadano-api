@@ -1,3 +1,6 @@
+/**
+ * Roles que puede tener un ciudadano dentro del sistema
+ */
 export enum Rol {
   Ciudadano = 'ciudadano',
   Administrador = 'administrador',

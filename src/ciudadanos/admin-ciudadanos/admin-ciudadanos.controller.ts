@@ -63,7 +63,7 @@ export class AdminCiudadanosController {
     //esto para que se pueda validar a nivel servicio las reglas CASL
     //que se aplican a la actualización de ciudadano
     return this.ciudadanosService.actualizarCiudadano(
-      +id,
+      id,
       updateCiudadanoDto,
       ciudadanoSesion,
     );

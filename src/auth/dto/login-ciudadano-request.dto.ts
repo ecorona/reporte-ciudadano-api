@@ -7,7 +7,13 @@ import {
   IsString,
 } from 'class-validator';
 
+/**
+ * Datos de inicio de sesión de un ciudadano
+ */
 export class LoginCiudadanoRequest {
+  /**
+   * Correo electrónico del ciudadano
+   */
   @ApiProperty({
     description: 'El email del ciudadano',
     example: 'juan@live.com',
@@ -16,6 +22,9 @@ export class LoginCiudadanoRequest {
   @IsNotEmpty()
   email: string;
 
+  /**
+   * Contraseña del ciudadano
+   */
   @ApiProperty({
     description: 'El password del ciudadano',
     example: 'password',
@@ -24,6 +33,9 @@ export class LoginCiudadanoRequest {
   @IsString()
   password: string;
 
+  /**
+   * Indica si el ciudadano quiere que se recuerde su sesión
+   */
   @ApiProperty({
     description: 'Si el ciudadano quiere que se recuerde su sesión',
     example: true,

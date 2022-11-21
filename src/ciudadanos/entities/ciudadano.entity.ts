@@ -3,8 +3,14 @@ import { Exclude } from 'class-transformer';
 import { Column, Entity } from 'typeorm';
 import { CommonEntity } from '../../common/common-entity.abstract';
 
+/**
+ * Entidad para los ciudadanos
+ */
 @Entity('ciudadanos')
 export class Ciudadano extends CommonEntity {
+  /**
+   * Nombre del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 150,
@@ -12,6 +18,9 @@ export class Ciudadano extends CommonEntity {
   })
   nombres: string;
 
+  /**
+   * Apellido del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 150,
@@ -19,6 +28,9 @@ export class Ciudadano extends CommonEntity {
   })
   apellidos: string;
 
+  /**
+   * Apodo electrónico del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 50,
@@ -26,6 +38,9 @@ export class Ciudadano extends CommonEntity {
   })
   alias: string;
 
+  /**
+   * Teléfono del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 10,
@@ -33,6 +48,9 @@ export class Ciudadano extends CommonEntity {
   })
   telefono: string;
 
+  /**
+   * Prefijo telefonico del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 5,
@@ -40,6 +58,9 @@ export class Ciudadano extends CommonEntity {
   })
   prefijoTelefono: string;
 
+  /**
+   * Correo electrónico del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 150,
@@ -48,6 +69,9 @@ export class Ciudadano extends CommonEntity {
   })
   email: string;
 
+  /**
+   * Contraseña del ciudadano
+   */
   @Column({
     type: 'varchar',
     length: 150,
@@ -56,6 +80,9 @@ export class Ciudadano extends CommonEntity {
   @Exclude()
   password: string;
 
+  /**
+   * Roles del ciudadano
+   */
   @Column({
     type: 'simple-array',
   })

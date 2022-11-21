@@ -73,7 +73,7 @@ export class CiudadanosService implements ICiudadanosService {
     //y si no puede actualizar al ciudadano... throw forbidden error
     ForbiddenError.from(abilitiesCiudadano)
       .setMessage('Solo puede actualizar su propia información')
-      .throwUnlessCan(Action.Update, ciudadanoAEditar);
+      .throwUnlessCan(Action.Update, ciudadanoAEditar, 'password');
 
     //de lo contrario, continua con la actualización
     return this.ciudadanoRepository.actualizarCiudadano(id, updateCiudadanoDto);

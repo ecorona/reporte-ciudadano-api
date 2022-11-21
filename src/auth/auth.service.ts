@@ -6,6 +6,9 @@ import { JwtPayloadDTO } from './dto/jwt-payload.dto';
 import { CiudadanosService } from '../ciudadanos/ciudadanos.service';
 import { ConfigService } from '@nestjs/config';
 
+/**
+ * Servicio para la autenticación de ciudadanos
+ */
 @Injectable()
 export class AuthService {
   constructor(
@@ -13,6 +16,13 @@ export class AuthService {
     private readonly configService: ConfigService,
     private jwtService: JwtService,
   ) {}
+  /**
+   * Método para validar credenciales de un ciudadano
+   *
+   * @param email email del ciudadano
+   * @param password contraseña del ciudadano
+   * @returns ciudadano autenticado
+   */
   async validarLoginCiudadano(
     email: string,
     password: string,
@@ -33,6 +43,13 @@ export class AuthService {
     return ciudadanoEntrando;
   }
 
+  /**
+   * Método para generar el token jwt
+   *
+   * @param ciudadano ciudadano que se va a autenticar
+   * @param recuerdame si el ciudadano quiere que se le recuerde
+   * @returns token jwt
+   */
   async login(
     ciudadano: Ciudadano,
     recuerdame: boolean,

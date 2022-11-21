@@ -9,8 +9,10 @@ import {
 import { Public } from '../../auth/decorators/public.decorator';
 import { CiudadanosService } from '../ciudadanos.service';
 import { CreateCiudadanoDto } from '../dto/create-ciudadano.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('public-ciudadanos')
+@ApiTags('public-ciudadanos')
 @UseInterceptors(ClassSerializerInterceptor)
 @Public()
 export class PublicCiudadanosController {

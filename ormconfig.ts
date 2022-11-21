@@ -4,6 +4,9 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
 
 config();
 
+/**
+ * Configuración de la base de datos
+ */
 const OptionsTYPEORM: MysqlConnectionOptions = {
   type: 'mysql',
   host: process.env.MYSQL_HOST,
@@ -16,4 +19,7 @@ const OptionsTYPEORM: MysqlConnectionOptions = {
   migrationsTableName: 'migrations',
 };
 
+/**
+ * Data source para la base de datos
+ */
 export default new DataSource(OptionsTYPEORM);

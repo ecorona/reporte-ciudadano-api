@@ -1,5 +1,8 @@
+/**
+ * Acciones que puede efectuar un ciudadano dentro de las entidades del sistema
+ */
 export enum Action {
-  Manage = 'manage', //todos
+  Manage = 'manage', // * todos
   Create = 'create',
   Read = 'read',
   Update = 'update',

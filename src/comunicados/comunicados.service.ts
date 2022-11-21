@@ -1,9 +1,16 @@
+import { CiudadanoRepository } from './../ciudadanos/ciudadanos.repository';
+import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { CreateComunicadoDto } from './dto/create-comunicado.dto';
 import { UpdateComunicadoDto } from './dto/update-comunicado.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ComunicadosService {
+  constructor(
+    @InjectRepository(CiudadanoRepository)
+    private readonly ciudadanoRepository: Repository<CiudadanoRepository>,
+  ) {}
   create(createComunicadoDto: CreateComunicadoDto) {
     return 'This action adds a new comunicado';
   }
