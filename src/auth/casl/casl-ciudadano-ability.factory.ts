@@ -12,7 +12,7 @@ import { Reporte } from '../../reportes/entities/reporte.entity';
 import { Rol } from '../../auth/roles/rol.enum';
 import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
 import { Action } from './actions.enum';
-import { Colonia } from 'src/colonias/entities/colonia.entity';
+import { Colonia } from '../../colonias/entities/colonia.entity';
 
 /**
  * sujetos a los cuales se validan los permisos

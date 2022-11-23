@@ -20,9 +20,10 @@ import { Colonia } from './colonias/entities/colonia.entity';
 import { Regiduria } from './regidurias/entities/regiduria.entity';
 import { Reporte } from './reportes/entities/reporte.entity';
 import { BitacoraReportes } from './reportes/entities/bitacora-reportes.entity';
-import { ComentariosReportes } from './reportes/entities/comentarios-reportes.entity';
 import { TiposReporte } from './reportes/entities/tipos-reporte.entity';
 import { TypeOrmExceptionFilter } from './database/filters/typeorm-exception.filter';
+import { ComentarioComunicado } from './comunicados/entities/comentario-comunicados.entity';
+import { ComentarioReporte } from './reportes/entities/comentario-reporte.entity';
 
 @Module({
   imports: [
@@ -67,8 +68,9 @@ import { TypeOrmExceptionFilter } from './database/filters/typeorm-exception.fil
           Reporte,
           TiposReporte,
           BitacoraReportes,
-          ComentariosReportes,
+          ComentarioReporte,
           ComunicadosModule,
+          ComentarioComunicado,
         ],
         synchronize: false,
       }),

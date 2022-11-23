@@ -12,7 +12,7 @@ import { Reporte } from './reporte.entity';
 
 @Entity('comentarios_reportes')
 @Tree('closure-table')
-export class ComentariosReportes extends CommonEntity {
+export class ComentarioReporte extends CommonEntity {
   @Column({
     type: 'datetime',
     nullable: false,
@@ -43,8 +43,8 @@ export class ComentariosReportes extends CommonEntity {
   ciudadanoId: number;
 
   @TreeParent()
-  parent: ComentariosReportes;
+  parent: ComentarioReporte;
 
   @TreeChildren()
-  children: ComentariosReportes[];
+  children: ComentarioReporte[];
 }
