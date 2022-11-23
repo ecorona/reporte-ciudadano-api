@@ -91,4 +91,8 @@ export class CiudadanosService implements ICiudadanosService {
   ): Promise<boolean> {
     return await compare(password, passwordHash);
   }
+
+  async enviarEmail() {
+    //enviar un email al ciudadano
+  }
 }

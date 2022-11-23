@@ -27,4 +27,11 @@ export class PublicCiudadanosController {
     //TODO enviar email
     return ciudadanoSuscrito;
   }
+
+  paginate() {
+    //TODO: implementar
+  }
+  findOne() {
+    //TODO: implementar
+  }
 }
