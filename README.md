@@ -1,6 +1,16 @@
 # Reporte Ciudadano - API
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
 
 El presente repositorio es parte de un grupo de respositorios que en conjunto, suman el esfuerzo para generar una herramienta Open Source que permita a un municipio tener contacto cercano con sus ciudadanos.
 
