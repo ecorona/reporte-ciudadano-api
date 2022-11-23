@@ -26,6 +26,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ecorona_reporte-ciudadano-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ecorona_reporte-ciudadano-api)
+
 ## Installation
 
 ```bash

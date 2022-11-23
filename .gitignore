@@ -3,6 +3,7 @@
 /node_modules
 /mysql/mysql
 /documentation
+/.scannerwork
 # Logs
 logs
 *.log

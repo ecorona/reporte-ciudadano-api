@@ -9,5 +9,20 @@
   },
   "[html]": {
     "editor.formatOnSave": false
-  }
+  },
+  "todo-tree.highlights.customHighlight": {
+    "BUG": {
+      "icon": "bug"
+    },
+    "HACK": {
+      "icon": "tools"
+    },
+    "FIXME": {
+      "icon": "flame"
+    },
+    "XXX": {
+      "icon": "$(close)"
+    }
+  },
+  "git.ignoreLimitWarning": true
 }

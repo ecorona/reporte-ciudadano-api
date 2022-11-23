@@ -81,7 +81,7 @@ export class CiudadanosService implements ICiudadanosService {
 
   //encriptar el password del ciudadano cargado
   async encriptarPassword(password: string): Promise<string> {
-    return await hash(password, await genSalt(10));
+    return hash(password, await genSalt(10));
   }
 
   //validar el password del ciudadano cargado
@@ -89,7 +89,7 @@ export class CiudadanosService implements ICiudadanosService {
     password: string,
     passwordHash: string,
   ): Promise<boolean> {
-    return await compare(password, passwordHash);
+    return compare(password, passwordHash);
   }
 
   async enviarEmail() {
