@@ -11,6 +11,7 @@ import { hash, compare, genSalt } from 'bcryptjs';
 import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability.factory';
 import { ForbiddenError } from '@casl/ability';
 import { Action } from '../auth/casl/actions.enum';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class CiudadanosService implements ICiudadanosService {
@@ -18,6 +19,7 @@ export class CiudadanosService implements ICiudadanosService {
     @InjectRepository(CiudadanoRepository)
     private readonly ciudadanoRepository: CiudadanoRepository,
     private readonly caslCiudadano: CaslCiudadanoAbilityFactory,
+    private readonly emailService: EmailService,
   ) {}
 
   async suscribir(nuevoCiudadano: CreateCiudadanoDto): Promise<Ciudadano> {
@@ -26,7 +28,17 @@ export class CiudadanosService implements ICiudadanosService {
       ciudadanoACrear.password,
     );
     ciudadanoACrear.roles = [Rol.Ciudadano];
-    return this.ciudadanoRepository.save(ciudadanoACrear);
+    const ciudadanoCreado = await this.ciudadanoRepository.save(
+      ciudadanoACrear,
+    );
+    //enviar un email al ciudadano con el service de email
+    await this.emailService.enviarEmail({
+      email: ciudadanoCreado.email,
+      subject: 'Bienvenido a la comunidad',
+      template: 'welcome',
+      context: ciudadanoCreado,
+    });
+    return ciudadanoCreado;
   }
 
   async crearCiudadano(
@@ -90,9 +102,5 @@ export class CiudadanosService implements ICiudadanosService {
     passwordHash: string,
   ): Promise<boolean> {
     return compare(password, passwordHash);
-  }
-
-  async enviarEmail() {
-    //enviar un email al ciudadano
   }
 }
