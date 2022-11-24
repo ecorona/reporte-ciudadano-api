@@ -6,10 +6,15 @@ import { PublicCiudadanosController } from './public-ciudadanos/public-ciudadano
 import { AdminCiudadanosController } from './admin-ciudadanos/admin-ciudadanos.controller';
 import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability.factory';
 import { Ciudadano } from './entities/ciudadano.entity';
+import { PrivateCiudadanosController } from './private-ciudadanos/private-ciudadanos.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Ciudadano])],
-  controllers: [AdminCiudadanosController, PublicCiudadanosController],
+  controllers: [
+    AdminCiudadanosController,
+    PublicCiudadanosController,
+    PrivateCiudadanosController,
+  ],
   providers: [
     CiudadanoRepository,
     CiudadanosService,

@@ -19,6 +19,7 @@ describe('CiudadanosController (e2e)', () => {
   });
 
   describe('Suscripción y login de ciudadano', () => {
+    let access_token_ciudadano: string;
     it('El ciudadano deberia poder suscribirse', () => {
       const ciudadanoACrear: CreateCiudadanoDto = {
         alias: 'El Chato',
@@ -45,14 +46,14 @@ describe('CiudadanosController (e2e)', () => {
         });
     });
 
+    const ciudadanoACrear: CreateCiudadanoDto = {
+      alias: 'El Chato',
+      password: 'password',
+      nombres: 'Juan',
+      apellidos: 'Perez',
+      email: 'juanperez@xst.mx',
+    };
     it('El ciudadano con un email ya registrado no deberia poder suscribirse', () => {
-      const ciudadanoACrear: CreateCiudadanoDto = {
-        alias: 'El Chato',
-        password: 'password',
-        nombres: 'Juan',
-        apellidos: 'Perez',
-        email: 'juanperez@xst.mx',
-      };
       return request(app.getHttpServer())
         .post('/public-ciudadanos/subscribe')
         .send(ciudadanoACrear)
@@ -71,17 +72,18 @@ describe('CiudadanosController (e2e)', () => {
         .expect(401);
     });
 
+    const loginDataCiudadano: LoginCiudadanoRequest = {
+      email: 'juanperez@xst.mx',
+      password: 'password',
+    };
     it('El ciudadano suscrito deberia poder loguearse', () => {
-      const ciudadanoSuscrito: LoginCiudadanoRequest = {
-        email: 'juanperez@xst.mx',
-        password: 'password',
-      };
       return request(app.getHttpServer())
         .post('/auth/login-ciudadano')
-        .send(ciudadanoSuscrito)
+        .send(loginDataCiudadano)
         .expect('Content-Type', /json/)
         .expect(201)
         .then((response) => {
+          access_token_ciudadano = response.body?.access_token || undefined;
           return expect(response.body).toEqual(
             expect.objectContaining({
               access_token: expect.any(String),
@@ -90,20 +92,31 @@ describe('CiudadanosController (e2e)', () => {
         });
     });
 
-    it('El ciudadano suscrito logueado debe poder ver la lista de ciudadanos', (done) => {
-      done('No implementado');
+    it('El ciudadano suscrito logueado debe poder ver la lista de ciudadanos', () => {
+      return request(app.getHttpServer())
+        .get('/private-ciudadanos')
+        .set('Authorization', `Bearer ${access_token_ciudadano}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response) => {
+          expect(response.body.length).toBe(1);
+          expect(response.body[0].id).toEqual(1);
+        });
     });
 
-    it('El ciudadano suscrito logueado debe poder su propia informacion', (done) => {
-      done('No implementado');
+    it('El ciudadano suscrito logueado debe poder ver su propia informacion', () => {
+      return request(app.getHttpServer())
+        .get('/private-ciudadanos/mi/perfil')
+        .set('Authorization', `Bearer ${access_token_ciudadano}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then((response) => {
+          expect(response.body.email).toEqual(loginDataCiudadano.email);
+        });
     });
 
-    it('El ciudadano suscrito logueado debe poder actualizar su nombre', (done) => {
-      done('No implementado');
-    });
+    // El ciudadano suscrito logueado debe poder actualizar su nombre
 
-    it('El ciudadano suscrito logueado no debe poder actualizar el nombre de otros ciudadanos', (done) => {
-      done('No implementado');
-    });
+    //El ciudadano suscrito logueado no debe poder actualizar el nombre de otros ciudadanos
   });
 });

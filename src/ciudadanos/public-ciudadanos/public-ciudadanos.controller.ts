@@ -13,10 +13,11 @@ import { ApiTags } from '@nestjs/swagger';
 
 @Controller('public-ciudadanos')
 @ApiTags('public-ciudadanos')
-@UseInterceptors(ClassSerializerInterceptor)
 @Public()
+@UseInterceptors(ClassSerializerInterceptor)
 export class PublicCiudadanosController {
   constructor(private readonly ciudadanosService: CiudadanosService) {}
+
   @Post('subscribe')
   async suscribir(
     @Body() nuevoCiudadanoRequest: CreateCiudadanoDto,
@@ -24,14 +25,6 @@ export class PublicCiudadanosController {
     const ciudadanoSuscrito = await this.ciudadanosService.suscribir(
       nuevoCiudadanoRequest,
     );
-    //TODO enviar email
     return ciudadanoSuscrito;
-  }
-
-  paginate() {
-    //TODO: implementar
-  }
-  findOne() {
-    //TODO: implementar
   }
 }

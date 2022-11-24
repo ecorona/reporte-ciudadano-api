@@ -11,9 +11,7 @@ describe('CiudadanosService', () => {
   let service: CiudadanosService;
   const mockAbilityFactory = {};
   const mockEmailService = {
-    enviarEmail: jest
-      .fn()
-      .mockImplementation((params) => Promise.resolve(params)),
+    enviarEmail: jest.fn(),
   };
   const mockCiudadanoRepository = {
     //regresa una instancia del ciudadano a crear

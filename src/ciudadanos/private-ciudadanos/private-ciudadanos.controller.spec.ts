@@ -3,10 +3,10 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { CaslCiudadanoAbilityFactory } from '../../auth/casl/casl-ciudadano-ability.factory';
 import { CiudadanoRepository } from '../ciudadanos.repository';
 import { CiudadanosService } from '../ciudadanos.service';
-import { PublicCiudadanosController } from './public-ciudadanos.controller';
+import { PrivateCiudadanosController } from './private-ciudadanos.controller';
 
 describe('PublicCiudadanosController', () => {
-  let controller: PublicCiudadanosController;
+  let controller: PrivateCiudadanosController;
 
   beforeEach(async () => {
     const mockAbilityFactory = {};
@@ -14,7 +14,7 @@ describe('PublicCiudadanosController', () => {
     const mockCiudadanosService = {};
 
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [PublicCiudadanosController],
+      controllers: [PrivateCiudadanosController],
       providers: [
         {
           provide: getRepositoryToken(CiudadanoRepository),
@@ -31,8 +31,8 @@ describe('PublicCiudadanosController', () => {
       ],
     }).compile();
 
-    controller = module.get<PublicCiudadanosController>(
-      PublicCiudadanosController,
+    controller = module.get<PrivateCiudadanosController>(
+      PrivateCiudadanosController,
     );
   });
 
@@ -42,6 +42,8 @@ describe('PublicCiudadanosController', () => {
 
   //que tenga los métodos requeridos
   it('should have the required methods', () => {
-    expect(controller).toHaveProperty('suscribir');
+    expect(controller).toHaveProperty('paginate');
+    expect(controller).toHaveProperty('findOne');
+    expect(controller).toHaveProperty('miPerfil');
   });
 });

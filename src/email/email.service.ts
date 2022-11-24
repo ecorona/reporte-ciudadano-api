@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class EmailService {
+  private logger = new Logger(EmailService.name);
   async enviarEmail(data: {
     email: string;
     subject: string;
     template: string;
     context: any;
   }) {
-    console.log('Enviando email a:', data.email);
+    this.logger.verbose(`Enviando email a: ${data.email}`);
   }
 }

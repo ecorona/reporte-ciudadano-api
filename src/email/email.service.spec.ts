@@ -18,5 +18,6 @@ describe('EmailService', () => {
 
   it('should have a enviarEmail method', () => {
     expect(service).toHaveProperty('enviarEmail');
+    expect(service).toHaveProperty('logger');
   });
 });
