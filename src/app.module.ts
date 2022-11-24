@@ -24,6 +24,7 @@ import { TiposReporte } from './reportes/entities/tipos-reporte.entity';
 import { TypeOrmExceptionFilter } from './database/filters/typeorm-exception.filter';
 import { ComentarioComunicado } from './comunicados/entities/comentario-comunicados.entity';
 import { ComentarioReporte } from './reportes/entities/comentario-reporte.entity';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -83,6 +84,7 @@ import { ComentarioReporte } from './reportes/entities/comentario-reporte.entity
     CallesModule,
     ColoniasModule,
     ComunicadosModule,
+    EmailModule,
   ],
   controllers: [],
   providers: [
