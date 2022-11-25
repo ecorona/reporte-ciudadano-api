@@ -7,6 +7,7 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
+import { CIUDADANO_MIN_PASSWORD_LENGTH } from '../../common/constants';
 import { Rol } from '../../auth/roles/rol.enum';
 
 export class CreateCiudadanoDto {
@@ -55,7 +56,7 @@ export class CreateCiudadanoDto {
     example: 'password',
   })
   @IsString()
-  @MinLength(8)
+  @MinLength(CIUDADANO_MIN_PASSWORD_LENGTH)
   password: string;
 
   @ApiProperty({

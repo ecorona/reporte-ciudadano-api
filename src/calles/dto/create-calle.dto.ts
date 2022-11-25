@@ -1,1 +1,3 @@
-export class CreateCalleDto {}
+export class CreateCalleDto {
+  nombre: string;
+}

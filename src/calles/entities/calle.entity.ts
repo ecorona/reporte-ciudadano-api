@@ -10,27 +10,27 @@ export class Calle extends CommonEntity {
   })
   nombre: string;
 
-  @ManyToOne(() => Ciudadano, { nullable: false })
-  ciudadanoFundador: Ciudadano;
+  @ManyToOne(() => Ciudadano, { nullable: true })
+  ciudadanoFundador?: Ciudadano;
 
   @Column({
     type: 'int',
-    nullable: false,
+    nullable: true,
   })
-  ciudadanoFundadorId: number;
+  ciudadanoFundadorId?: number;
 
-  @ManyToOne(() => Ciudadano, { nullable: false })
-  ciudadanoAdministrador: Ciudadano;
+  @ManyToOne(() => Ciudadano, { nullable: true })
+  ciudadanoAdministrador?: Ciudadano;
 
   @Column({
     type: 'int',
-    nullable: false,
+    nullable: true,
   })
-  ciudadanoAdministradorId: number;
+  ciudadanoAdministradorId?: number;
 
   @Column({
     type: 'boolean',
     default: false,
   })
-  activo: boolean;
+  activo?: boolean;
 }

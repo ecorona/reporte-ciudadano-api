@@ -12,6 +12,7 @@ import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability
 import { ForbiddenError } from '@casl/ability';
 import { Action } from '../auth/casl/actions.enum';
 import { EmailService } from '../email/email.service';
+import { CIUDADANO_PASSWORD_SALT_ROUNDS } from '../common/constants';
 
 @Injectable()
 export class CiudadanosService implements ICiudadanosService {
@@ -93,7 +94,7 @@ export class CiudadanosService implements ICiudadanosService {
 
   //encriptar el password del ciudadano cargado
   async encriptarPassword(password: string): Promise<string> {
-    return hash(password, await genSalt(10));
+    return hash(password, await genSalt(CIUDADANO_PASSWORD_SALT_ROUNDS));
   }
 
   //validar el password del ciudadano cargado

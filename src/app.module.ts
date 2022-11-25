@@ -25,12 +25,13 @@ import { TypeOrmExceptionFilter } from './database/filters/typeorm-exception.fil
 import { ComentarioComunicado } from './comunicados/entities/comentario-comunicados.entity';
 import { ComentarioReporte } from './reportes/entities/comentario-reporte.entity';
 import { EmailModule } from './email/email.module';
+import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
 
 @Module({
   imports: [
     ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 20,
+      ttl: THROTTLE_TTL_GLOBAL,
+      limit: THROTTLE_LIMIT_GLOBAL,
     }),
     ConfigModule.forRoot({
       validationSchema: Joi.object({

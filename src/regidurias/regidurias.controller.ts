@@ -52,13 +52,21 @@ export class RegiduriasController {
   }
 
   @Patch()
-  assignAdmin() {}
+  assignAdmin() {
+    //TODO:
+  }
 
   @Patch()
-  unassignAdmin() {}
+  unassignAdmin() {
+    //TODO:
+  }
 
   @Patch()
-  activate() {}
+  activate() {
+    //TODO:
+  }
   @Patch()
-  deactivate() {}
+  deactivate() {
+    //TODO:
+  }
 }

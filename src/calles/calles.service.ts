@@ -1,11 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { CallesRepository } from './calles.repository';
 import { CreateCalleDto } from './dto/create-calle.dto';
 import { UpdateCalleDto } from './dto/update-calle.dto';
+import { Calle } from './entities/calle.entity';
 
 @Injectable()
 export class CallesService {
-  create(createCalleDto: CreateCalleDto) {
-    return 'This action adds a new calle';
+  constructor(private readonly callesRepository: CallesRepository) {}
+  async create(createCalleDto: CreateCalleDto): Promise<Calle> {
+    const nuevaCalle = this.callesRepository.create(createCalleDto);
+    nuevaCalle.activo = false;
+    return this.callesRepository.save(nuevaCalle);
   }
 
   findAll() {

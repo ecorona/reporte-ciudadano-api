@@ -12,13 +12,15 @@ describe('RegiduriasService', () => {
   let service: RegiduriasService;
   const mockRegidurasRepository = {
     save: jest.fn().mockImplementation((regiduraACrear: CreateRegiduriaDto) => {
-      const regiduriaNueva = new Regiduria();
-      regiduriaNueva.nombre = regiduraACrear.nombre;
-      regiduriaNueva.createdAt = new Date();
-      regiduriaNueva.updatedAt = new Date();
-      regiduriaNueva.version = 1;
-      regiduriaNueva.activo = false;
-      regiduriaNueva.id = 1;
+      let regiduriaNueva = new Regiduria();
+      regiduriaNueva = {
+        id: 1,
+        ...regiduraACrear,
+        activo: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        version: 1,
+      };
       return Promise.resolve(regiduriaNueva);
     }),
   };

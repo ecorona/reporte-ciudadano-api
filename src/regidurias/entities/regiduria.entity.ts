@@ -12,13 +12,13 @@ export class Regiduria extends CommonEntity {
   nombre: string;
 
   @ManyToOne(() => Ciudadano, { nullable: true })
-  ciudadanoAdministrador: Ciudadano;
+  ciudadanoAdministrador?: Ciudadano;
 
   @Column({
     type: 'int',
     nullable: true,
   })
-  ciudadanoAdministradorId: number;
+  ciudadanoAdministradorId?: number;
 
   @Column({
     type: 'boolean',

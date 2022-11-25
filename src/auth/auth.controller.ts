@@ -16,6 +16,9 @@ import { LocalAuthGuard } from './guards/local/local-auth.guard';
 import { Public } from './decorators/public.decorator';
 import { SesionCiudadano } from './decorators/sesion-ciudadano.decorator';
 
+const INTENTOS = 3;
+const TIEMPO = 60;
+
 /**
  * Controlador para la autenticación de ciudadanos
  */
@@ -33,7 +36,7 @@ export class AuthController {
    * @throws {UnauthorizedException} si el ciudadano no está activo
    */
   @Public()
-  @Throttle(3, 60)
+  @Throttle(INTENTOS, TIEMPO)
   @ApiOperation({
     summary: 'Inicia la sesión del ciudadano',
     description: 'Inicia la sesión del ciudadano',

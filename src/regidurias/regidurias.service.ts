@@ -27,10 +27,18 @@ export class RegiduriasService {
   getById(id: number) {
     return `This action returns a #${id} regiduria`;
   }
-  assignAdmin() {}
-  unassignAdmin() {}
-  activate() {}
-  deactivate() {}
+  assignAdmin() {
+    //TODO:
+  }
+  unassignAdmin() {
+    //TODO:
+  }
+  activate() {
+    //TODO:
+  }
+  deactivate() {
+    //TODO:
+  }
 
   update(id: number, updateRegiduriaDto: UpdateRegiduriaDto) {
     return `This action updates a #${id} regiduria`;
