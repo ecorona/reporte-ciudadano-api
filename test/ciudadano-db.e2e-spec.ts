@@ -99,8 +99,8 @@ describe('CiudadanosController (e2e)', () => {
         .expect('Content-Type', /json/)
         .expect(200)
         .then((response) => {
-          expect(response.body.length).toBe(1);
-          expect(response.body[0].id).toEqual(1);
+          expect(response.body.length).toBeGreaterThan(1);
+          expect(response.body[0].id).toEqual(expect.any(Number));
         });
     });
 

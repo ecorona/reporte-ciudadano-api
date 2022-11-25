@@ -27,8 +27,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
-    "test:e2e:clean": "npm run drop&& npm run mig:run&&jest --config ./test/jest-e2e.json --forceExit",
+    "test:e2e:clean": "npm run drop&& npm run mig:run&&npm run seed:db&&jest --config ./test/jest-e2e.json --forceExit",
     "drop": "ts-node drop-tables.ts",
+    "seed:db": "ts-node ./test/table-info-testing.ts",
     "mig:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ormconfig.ts -o",
     "mig:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
     "mig:rev": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ormconfig.ts"
