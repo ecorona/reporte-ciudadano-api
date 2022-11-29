@@ -7,7 +7,7 @@ import { CiudadanosModule } from './ciudadanos/ciudadanos.module';
 import { AuthModule } from './auth/auth.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import * as Joi from 'joi';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt/jwt-auth.guard';
 import { HttpExceptionFilter } from './common/http-exception.filter';
 import { ReportesModule } from './reportes/reportes.module';
@@ -26,6 +26,10 @@ import { ComentarioComunicado } from './comunicados/entities/comentario-comunica
 import { ComentarioReporte } from './reportes/entities/comentario-reporte.entity';
 import { EmailModule } from './email/email.module';
 import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
+import { SyslogModule } from './syslog/syslog.module';
+import { ConfigKeys } from './app.config-keys';
+import { SyslogInterceptor } from './syslog/syslog.interceptor';
+import { SyslogEntity } from './syslog/syslog.entity';
 
 @Module({
   imports: [
@@ -46,6 +50,7 @@ import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
         MYSQL_HOST: Joi.string().default('localhost'),
         MYSQL_PORT: Joi.number().default(3306),
         MYSQL_DATABASE: Joi.string().default('reporteCiudadano'),
+        ENABLE_SYSLOG: Joi.boolean().default(true),
       }),
       isGlobal: true,
       validationOptions: {
@@ -57,11 +62,11 @@ import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: configService.get<string>('MYSQL_HOST'),
-        port: configService.get<number>('MYSQL_PORT'),
-        username: configService.get<string>('MYSQL_USER'),
-        password: configService.get<string>('MYSQL_PASSWORD'),
-        database: configService.get<string>('MYSQL_DATABASE'),
+        host: configService.get<string>(ConfigKeys.MYSQL_HOST),
+        port: configService.get<number>(ConfigKeys.MYSQL_PORT),
+        username: configService.get<string>(ConfigKeys.MYSQL_USER),
+        password: configService.get<string>(ConfigKeys.MYSQL_PASSWORD),
+        database: configService.get<string>(ConfigKeys.MYSQL_DATABASE),
         entities: [
           Ciudadano,
           Calle,
@@ -73,6 +78,7 @@ import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
           ComentarioReporte,
           ComunicadosModule,
           ComentarioComunicado,
+          SyslogEntity,
         ],
         synchronize: false,
       }),
@@ -86,9 +92,15 @@ import { THROTTLE_TTL_GLOBAL, THROTTLE_LIMIT_GLOBAL } from './common/constants';
     ColoniasModule,
     ComunicadosModule,
     EmailModule,
+    SyslogModule,
   ],
   controllers: [],
   providers: [
+    //syslog de sistema con decoradores
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: SyslogInterceptor,
+    },
     //Todas las solicitudes a todas las rutas serán validadas contra
     // un token Jwt en los headers
     {
