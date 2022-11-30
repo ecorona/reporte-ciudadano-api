@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LocalStrategy } from './guards/local/local.strategy';
 import { JwtStrategy } from './guards/jwt/jwt.strategy';
 import { CaslModule } from './casl/casl.module';
+import { ConfigKeys } from '../app.config-keys';
 @Global()
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { CaslModule } from './casl/casl.module';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        secret: configService.get<string>(ConfigKeys.JWT_SECRET),
         signOptions: { expiresIn: '8h' },
       }),
       inject: [ConfigService],

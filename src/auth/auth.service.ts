@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { JwtPayloadDTO } from './dto/jwt-payload.dto';
 import { CiudadanosService } from '../ciudadanos/ciudadanos.service';
 import { ConfigService } from '@nestjs/config';
+import { ConfigKeys } from '../app.config-keys';
 
 /**
  * Servicio para la autenticación de ciudadanos
@@ -61,7 +62,7 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(tokenPayload, {
         expiresIn: recuerdame ? '30d' : '1d',
-        secret: this.configService.get<string>('JWT_SECRET'),
+        secret: this.configService.get<string>(ConfigKeys.JWT_SECRET),
       }),
     };
   }

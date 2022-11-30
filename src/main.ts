@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { readFileSync } from 'fs';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
+import { ConfigKeys } from './app.config-keys';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestApplication>(AppModule);
@@ -25,7 +26,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   //prefijo global para todas las apis, configurado en app.module en los valores config default
-  app.setGlobalPrefix(configService.get<string>('API_GLOBAL_PREFIX'));
+  app.setGlobalPrefix(configService.get<string>(ConfigKeys.API_GLOBAL_PREFIX));
 
   //version de api por default para los que no esten decorados con @Version
   app.enableVersioning({
@@ -36,8 +37,9 @@ async function bootstrap() {
 
   //en desarrollo y testing levantar swagger
   if (
-    ['development', 'testing'].indexOf(configService.get<string>('NODE_ENV')) >
-    -1
+    ['development', 'testing'].indexOf(
+      configService.get<string>(ConfigKeys.NODE_ENV),
+    ) > -1
   ) {
     //obtener valores del package.json
     const appPackage = JSON.parse(readFileSync('package.json').toString());
@@ -64,6 +66,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   //levantar el api
-  await app.listen(configService.get('PORT'));
+  await app.listen(configService.get(ConfigKeys.PORT));
 }
 bootstrap();

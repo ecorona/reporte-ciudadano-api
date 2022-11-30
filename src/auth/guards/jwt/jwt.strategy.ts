@@ -5,6 +5,7 @@ import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
 import { JwtPayloadDTO } from '../../../auth/dto/jwt-payload.dto';
 import { CiudadanoRepository } from '../../../ciudadanos/ciudadanos.repository';
 import { Ciudadano } from '../../../ciudadanos/entities/ciudadano.entity';
+import { ConfigKeys } from '../../../app.config-keys';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -15,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get('JWT_SECRET'),
+      secretOrKey: configService.get(ConfigKeys.JWT_SECRET),
     });
   }
 
