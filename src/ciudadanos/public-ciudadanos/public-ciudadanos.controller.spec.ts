@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CaslCiudadanoAbilityFactory } from '../../auth/casl/casl-ciudadano-ability.factory';
+import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
 import { CiudadanoRepository } from '../ciudadanos.repository';
 import { CiudadanosService } from '../ciudadanos.service';
 import { PublicCiudadanosController } from './public-ciudadanos.controller';

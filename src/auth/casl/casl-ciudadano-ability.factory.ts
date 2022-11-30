@@ -1,4 +1,3 @@
-import { Calle } from './../../calles/entities/calle.entity';
 import {
   InferSubjects,
   Ability,
@@ -7,12 +6,13 @@ import {
   ExtractSubjectType,
 } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
-import { Regiduria } from '../../regidurias/entities/regiduria.entity';
-import { Reporte } from '../../reportes/entities/reporte.entity';
-import { Rol } from '../../auth/roles/rol.enum';
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
+import { Calle } from '@root/calles/entities/calle.entity';
+import { Regiduria } from '@root/regidurias/entities/regiduria.entity';
+import { Reporte } from '@root/reportes/entities/reporte.entity';
+import { Rol } from '@root/auth/roles/rol.enum';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Action } from './actions.enum';
-import { Colonia } from '../../colonias/entities/colonia.entity';
+import { Colonia } from '@root/colonias/entities/colonia.entity';
 
 /**
  * sujetos a los cuales se validan los permisos

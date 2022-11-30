@@ -1,11 +1,11 @@
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { HttpException, Injectable, HttpStatus } from '@nestjs/common';
-import { JwtPayloadDTO } from '../../../auth/dto/jwt-payload.dto';
-import { CiudadanoRepository } from '../../../ciudadanos/ciudadanos.repository';
-import { Ciudadano } from '../../../ciudadanos/entities/ciudadano.entity';
-import { ConfigKeys } from '../../../app.config-keys';
+import { ConfigKeys } from '@root/app.config-keys';
+import { JwtPayloadDTO } from '@root/auth/dto/jwt-payload.dto';
+import { CiudadanoRepository } from '@root/ciudadanos/ciudadanos.repository';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

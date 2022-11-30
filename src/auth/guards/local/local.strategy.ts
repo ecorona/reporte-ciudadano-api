@@ -1,10 +1,10 @@
 import { Strategy } from 'passport-local';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { AuthService } from '../../../auth/auth.service';
 import { Request } from 'express';
 import { ContextIdFactory, ModuleRef } from '@nestjs/core';
-import { Ciudadano } from '../../../ciudadanos/entities/ciudadano.entity';
+import { AuthService } from '@root/auth/auth.service';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private moduleRef: ModuleRef) {

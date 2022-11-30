@@ -1,6 +1,3 @@
-import { JwtAuthGuard } from '../../auth/guards/jwt/jwt-auth.guard';
-import { OpcionesPaginacionCiudadano } from '../dto/opciones-paginacion-ciudadano.dto';
-import { Ciudadano } from '../entities/ciudadano.entity';
 import {
   ClassSerializerInterceptor,
   Controller,
@@ -11,9 +8,12 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { CiudadanosService } from '../ciudadanos.service';
 import { ApiTags } from '@nestjs/swagger';
-import { SesionCiudadano } from '../../auth/decorators/sesion-ciudadano.decorator';
+import { SesionCiudadano } from '@root/auth/decorators/sesion-ciudadano.decorator';
+import { JwtAuthGuard } from '@root/auth/guards/jwt/jwt-auth.guard';
+import { CiudadanosService } from '../ciudadanos.service';
+import { OpcionesPaginacionCiudadano } from '../dto/opciones-paginacion-ciudadano.dto';
+import { Ciudadano } from '../entities/ciudadano.entity';
 
 @Controller('private-ciudadanos')
 @ApiTags('private-ciudadanos')

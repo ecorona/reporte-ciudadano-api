@@ -1,7 +1,4 @@
-import { LoginCiudadanoResponse } from './dto/login-ciudadano-response.dto';
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginCiudadanoRequest } from './dto/login-ciudadano-request.dto';
 import {
   ApiBadRequestResponse,
   ApiBody,
@@ -11,10 +8,13 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
-import { Ciudadano } from '../ciudadanos/entities/ciudadano.entity';
-import { LocalAuthGuard } from './guards/local/local-auth.guard';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
 import { SesionCiudadano } from './decorators/sesion-ciudadano.decorator';
+import { LoginCiudadanoRequest } from './dto/login-ciudadano-request.dto';
+import { LoginCiudadanoResponse } from './dto/login-ciudadano-response.dto';
+import { LocalAuthGuard } from './guards/local/local-auth.guard';
 
 const INTENTOS = 3;
 const TIEMPO = 60;

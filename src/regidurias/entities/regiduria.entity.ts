@@ -1,5 +1,5 @@
-import { CommonEntity } from '../../common/common-entity.abstract';
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
+import { CommonEntity } from '@root/common/common-entity.abstract';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('regidurias')

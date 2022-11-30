@@ -1,10 +1,10 @@
-import { CommonEntity } from '../../common/common-entity.abstract';
-import { Colonia } from './../../colonias/entities/colonia.entity';
-import { Calle } from './../../calles/entities/calle.entity';
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
+import { CommonEntity } from '@root/common/common-entity.abstract';
+import { Colonia } from '@root/colonias/entities/colonia.entity';
+import { Calle } from '@root/calles/entities/calle.entity';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { OrigenesComunicados } from '../enum/origenes-comunicados.enum';
-import { Regiduria } from '../../regidurias/entities/regiduria.entity';
+import { Regiduria } from '@root/regidurias/entities/regiduria.entity';
 
 @Entity('comunicados')
 export class Comunicado extends CommonEntity {

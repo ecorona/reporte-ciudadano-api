@@ -1,6 +1,6 @@
-import { CommonEntity } from '../../common/common-entity.abstract';
+import { CommonEntity } from '@root/common/common-entity.abstract';
 import { TiposReporte } from './tipos-reporte.entity';
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('reportes_ciudadanos')

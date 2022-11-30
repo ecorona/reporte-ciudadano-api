@@ -1,6 +1,6 @@
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Rol } from './rol.enum';
 import { ROLES_KEY } from './roles.decorator';
 

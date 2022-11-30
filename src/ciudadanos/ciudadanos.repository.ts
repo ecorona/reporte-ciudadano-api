@@ -1,9 +1,9 @@
-import { OpcionesPaginacionCiudadano } from './dto/opciones-paginacion-ciudadano.dto';
-import { UpdateCiudadanoDto } from './dto/update-ciudadano.dto';
-import { Repository } from 'typeorm';
-import { Ciudadano } from './entities/ciudadano.entity';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { OpcionesPaginacionCiudadano } from './dto/opciones-paginacion-ciudadano.dto';
+import { UpdateCiudadanoDto } from './dto/update-ciudadano.dto';
+import { Ciudadano } from './entities/ciudadano.entity';
 
 @Injectable()
 export class CiudadanoRepository extends Repository<Ciudadano> {

@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { CiudadanosService } from '../ciudadanos/ciudadanos.service';
+import { CiudadanosService } from '@root/ciudadanos/ciudadanos.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './guards/jwt/jwt.strategy';

@@ -15,7 +15,7 @@ import { SyslogMetaData } from './syslog-include.decorator';
 import { ConfigKeys } from '../app.config-keys';
 import { SyslogEntity } from './syslog.entity';
 import { SYSLOG_INCLUDE_METADATA_KEY } from './constants';
-import { Ciudadano } from 'src/ciudadanos/entities/ciudadano.entity';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 import { Request, Response } from 'express';
 /**
  * Intercepta todas las solicitudes que se hacen al sistema y se cuelga de la salida para generar

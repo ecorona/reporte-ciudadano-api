@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdminCiudadanosController } from './admin-ciudadanos.controller';
-import { CiudadanosService } from '../ciudadanos.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CaslCiudadanoAbilityFactory } from '../../auth/casl/casl-ciudadano-ability.factory';
+import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
 import { CiudadanoRepository } from '../ciudadanos.repository';
+import { CiudadanosService } from '../ciudadanos.service';
+import { AdminCiudadanosController } from './admin-ciudadanos.controller';
 
 describe('CiudadanosController', () => {
   let controller: AdminCiudadanosController;

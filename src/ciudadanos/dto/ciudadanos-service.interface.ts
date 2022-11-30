@@ -1,7 +1,7 @@
-import { CreateCiudadanoDto } from './create-ciudadano.dto';
 import { Ciudadano } from '../entities/ciudadano.entity';
-import { UpdateCiudadanoDto } from './update-ciudadano.dto';
+import { CreateCiudadanoDto } from './create-ciudadano.dto';
 import { OpcionesPaginacionCiudadano } from './opciones-paginacion-ciudadano.dto';
+import { UpdateCiudadanoDto } from './update-ciudadano.dto';
 
 export interface ICiudadanosService {
   crearCiudadano(createCiudadanoDto: CreateCiudadanoDto): Promise<Ciudadano>;

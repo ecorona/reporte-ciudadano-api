@@ -1,5 +1,5 @@
-import { CommonEntity } from '../../common/common-entity.abstract';
-import { Regiduria } from '../../regidurias/entities/regiduria.entity';
+import { CommonEntity } from '@root/common/common-entity.abstract';
+import { Regiduria } from '@root/regidurias/entities/regiduria.entity';
 import { Column, Entity, ManyToOne } from 'typeorm';
 
 @Entity('tipos_reporte')

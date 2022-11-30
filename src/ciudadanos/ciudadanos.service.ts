@@ -1,18 +1,18 @@
-import { OpcionesPaginacionCiudadano } from './dto/opciones-paginacion-ciudadano.dto';
-import { Ciudadano } from './entities/ciudadano.entity';
+import { ForbiddenError } from '@casl/ability';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Action } from '@root/auth/casl/actions.enum';
+import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
+import { Rol } from '@root/auth/roles/rol.enum';
+import { CIUDADANO_PASSWORD_SALT_ROUNDS } from '@root/common/constants';
+import { EmailService } from '@root/email/email.service';
+import { compare, genSalt, hash } from 'bcryptjs';
 import { CiudadanoRepository } from './ciudadanos.repository';
 import { ICiudadanosService } from './dto/ciudadanos-service.interface';
 import { CreateCiudadanoDto } from './dto/create-ciudadano.dto';
+import { OpcionesPaginacionCiudadano } from './dto/opciones-paginacion-ciudadano.dto';
 import { UpdateCiudadanoDto } from './dto/update-ciudadano.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Rol } from '../auth/roles/rol.enum';
-import { hash, compare, genSalt } from 'bcryptjs';
-import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability.factory';
-import { ForbiddenError } from '@casl/ability';
-import { Action } from '../auth/casl/actions.enum';
-import { EmailService } from '../email/email.service';
-import { CIUDADANO_PASSWORD_SALT_ROUNDS } from '../common/constants';
+import { Ciudadano } from './entities/ciudadano.entity';
 
 @Injectable()
 export class CiudadanosService implements ICiudadanosService {

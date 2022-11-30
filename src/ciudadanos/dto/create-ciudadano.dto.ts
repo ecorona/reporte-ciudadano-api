@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Rol } from '@root/auth/roles/rol.enum';
+import { CIUDADANO_MIN_PASSWORD_LENGTH } from '@root/common/constants';
 import {
   IsEmail,
   IsEnum,
@@ -7,8 +9,6 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-import { CIUDADANO_MIN_PASSWORD_LENGTH } from '../../common/constants';
-import { Rol } from '../../auth/roles/rol.enum';
 
 export class CreateCiudadanoDto {
   @ApiProperty({

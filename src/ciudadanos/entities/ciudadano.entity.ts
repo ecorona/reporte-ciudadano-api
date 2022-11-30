@@ -1,7 +1,7 @@
-import { Rol } from './../../auth/roles/rol.enum';
+import { Rol } from '@root/auth/roles/rol.enum';
+import { CommonEntity } from '@root/common/common-entity.abstract';
 import { Exclude } from 'class-transformer';
 import { Column, Entity } from 'typeorm';
-import { CommonEntity } from '../../common/common-entity.abstract';
 
 /**
  * Entidad para los ciudadanos

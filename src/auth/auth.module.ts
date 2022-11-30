@@ -1,14 +1,14 @@
-import { CiudadanosModule } from './../ciudadanos/ciudadanos.module';
 import { Global, Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { LocalStrategy } from './guards/local/local.strategy';
-import { JwtStrategy } from './guards/jwt/jwt.strategy';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigKeys } from '@root/app.config-keys';
+import { CiudadanosModule } from '@root/ciudadanos/ciudadanos.module';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
 import { CaslModule } from './casl/casl.module';
-import { ConfigKeys } from '../app.config-keys';
+import { JwtStrategy } from './guards/jwt/jwt.strategy';
+import { LocalStrategy } from './guards/local/local.strategy';
 @Global()
 @Module({
   imports: [

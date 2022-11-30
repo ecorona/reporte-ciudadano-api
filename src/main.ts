@@ -6,7 +6,12 @@ import { readFileSync } from 'fs';
 import { AppModule } from './app.module';
 import helmet from 'helmet';
 import { ConfigKeys } from './app.config-keys';
+import * as moduleAlias from 'module-alias';
+import { resolve } from 'path';
 
+moduleAlias.addAliases({
+  '@root': resolve(__dirname),
+});
 async function bootstrap() {
   const app = await NestFactory.create<NestApplication>(AppModule);
 

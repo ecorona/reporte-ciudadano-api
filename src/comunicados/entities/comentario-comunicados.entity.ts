@@ -1,4 +1,5 @@
-import { Reporte } from '../../reportes/entities/reporte.entity';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { Reporte } from '@root/reportes/entities/reporte.entity';
 import {
   Column,
   CreateDateColumn,
@@ -10,7 +11,6 @@ import {
   TreeChildren,
   TreeParent,
 } from 'typeorm';
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
 
 @Entity('comentarios_comunicados')
 @Tree('closure-table')

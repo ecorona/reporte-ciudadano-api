@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
-import { CreateRegiduriaDto } from 'src/regidurias/dto/create-regiduria.dto';
+import { CreateRegiduriaDto } from '@root/regidurias/dto/create-regiduria.dto';
 
 describe('RegiduriasController (e2e)', () => {
   let app: INestApplication;

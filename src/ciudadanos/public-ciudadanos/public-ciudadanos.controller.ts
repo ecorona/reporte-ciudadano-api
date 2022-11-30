@@ -1,4 +1,3 @@
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
 import {
   Body,
   ClassSerializerInterceptor,
@@ -6,11 +5,12 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { Public } from '../../auth/decorators/public.decorator';
+import { ApiTags } from '@nestjs/swagger';
+import { Public } from '@root/auth/decorators/public.decorator';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { SyslogInclude } from '@root/syslog/syslog-include.decorator';
 import { CiudadanosService } from '../ciudadanos.service';
 import { CreateCiudadanoDto } from '../dto/create-ciudadano.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { SyslogInclude } from 'src/syslog/syslog-include.decorator';
 
 @Controller('public-ciudadanos')
 @ApiTags('public-ciudadanos')

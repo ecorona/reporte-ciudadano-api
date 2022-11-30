@@ -27,12 +27,13 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --forceExit",
-    "test:e2e:clean": "npm run drop&& npm run mig:run&&npm run seed:db&&jest --config ./test/jest-e2e.json --forceExit",
-    "drop": "ts-node drop-tables.ts",
-    "seed:db": "ts-node ./test/table-info-testing.ts",
-    "mig:gen": "ts-node ./node_modules/typeorm/cli.js migration:generate -d ormconfig.ts -o",
-    "mig:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
-    "mig:rev": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ormconfig.ts"
+    "test:e2e:clean": "npm run drop&& npm run mig:run&&npm run seed:db&&jest --config ./test/jest-e2e.json --runInBand --forceExit",
+    "drop": "ts-node -r ./tsconfig-paths-bootstrap.ts drop-tables.ts",
+    "seed:db": "ts-node -r ./tsconfig-paths-bootstrap.ts ./test/table-info-testing.ts",
+    "typeorm": "ts-node -r ./tsconfig-paths-bootstrap.ts ./node_modules/typeorm/cli.js",
+    "mig:gen": "ts-node -r ./tsconfig-paths-bootstrap.ts ./node_modules/typeorm/cli.js migration:generate -d ormconfig.ts -o",
+    "mig:run": "ts-node -r ./tsconfig-paths-bootstrap.ts ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
+    "mig:rev": "ts-node -r ./tsconfig-paths-bootstrap.ts ./node_modules/typeorm/cli.js migration:revert -d ormconfig.ts"
   },
   "dependencies": {
     "@casl/ability": "^5.4.4",
@@ -51,6 +52,7 @@
     "class-validator": "^0.13.2",
     "helmet": "^6.0.0",
     "joi": "^17.7.0",
+    "module-alias": "^2.2.2",
     "moment": "^2.29.4",
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
@@ -103,6 +105,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@root/(.*)$": "<rootDir>/$1"
+    }
   }
 }

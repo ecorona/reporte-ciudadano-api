@@ -1,5 +1,5 @@
-import { Ciudadano } from '../../ciudadanos/entities/ciudadano.entity';
-import { CommonEntity } from '../../common/common-entity.abstract';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { CommonEntity } from '@root/common/common-entity.abstract';
 import { Column, Entity, ManyToOne } from 'typeorm';
 @Entity('calles')
 export class Calle extends CommonEntity {

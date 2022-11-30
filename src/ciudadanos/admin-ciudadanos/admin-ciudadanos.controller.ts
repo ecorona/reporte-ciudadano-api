@@ -1,24 +1,24 @@
 import {
+  Body,
+  ClassSerializerInterceptor,
   Controller,
   Get,
-  Post,
-  Body,
-  Patch,
   Param,
-  Query,
-  UseInterceptors,
-  ClassSerializerInterceptor,
   ParseIntPipe,
+  Patch,
+  Post,
+  Query,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { SyslogInclude } from '../../syslog/syslog-include.decorator';
-import { Action } from '../../auth/casl/actions.enum';
-import { CheckPolicies } from '../../auth/casl/check-policies.decorator';
-import { PoliciesGuard } from '../../auth/casl/policies.guard';
-import { SesionCiudadano } from '../../auth/decorators/sesion-ciudadano.decorator';
-import { Rol } from '../../auth/roles/rol.enum';
-import { Roles } from '../../auth/roles/roles.decorator';
+import { Action } from '@root/auth/casl/actions.enum';
+import { CheckPolicies } from '@root/auth/casl/check-policies.decorator';
+import { PoliciesGuard } from '@root/auth/casl/policies.guard';
+import { SesionCiudadano } from '@root/auth/decorators/sesion-ciudadano.decorator';
+import { Rol } from '@root/auth/roles/rol.enum';
+import { Roles } from '@root/auth/roles/roles.decorator';
+import { SyslogInclude } from '@root/syslog/syslog-include.decorator';
 import { CiudadanosService } from '../ciudadanos.service';
 import { CreateCiudadanoDto } from '../dto/create-ciudadano.dto';
 import { OpcionesPaginacionCiudadano } from '../dto/opciones-paginacion-ciudadano.dto';

@@ -1,11 +1,12 @@
-import { Ciudadano } from './../ciudadanos/entities/ciudadano.entity';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginCiudadanoResponse } from './dto/login-ciudadano-response.dto';
-import { JwtService } from '@nestjs/jwt';
-import { JwtPayloadDTO } from './dto/jwt-payload.dto';
-import { CiudadanosService } from '../ciudadanos/ciudadanos.service';
 import { ConfigService } from '@nestjs/config';
-import { ConfigKeys } from '../app.config-keys';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigKeys } from '@root/app.config-keys';
+import { CiudadanosService } from '@root/ciudadanos/ciudadanos.service';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { TOKEN_EXPIRES_IN, TOKEN_EXPIRES_IN_REMEMBER_ME } from './constants';
+import { JwtPayloadDTO } from './dto/jwt-payload.dto';
+import { LoginCiudadanoResponse } from './dto/login-ciudadano-response.dto';
 
 /**
  * Servicio para la autenticación de ciudadanos
@@ -61,7 +62,7 @@ export class AuthService {
     };
     return {
       access_token: this.jwtService.sign(tokenPayload, {
-        expiresIn: recuerdame ? '30d' : '1d',
+        expiresIn: recuerdame ? TOKEN_EXPIRES_IN_REMEMBER_ME : TOKEN_EXPIRES_IN,
         secret: this.configService.get<string>(ConfigKeys.JWT_SECRET),
       }),
     };

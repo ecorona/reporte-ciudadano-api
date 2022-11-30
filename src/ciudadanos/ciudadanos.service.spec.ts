@@ -1,11 +1,11 @@
-import { Ciudadano } from './entities/ciudadano.entity';
-import { CreateCiudadanoDto } from './dto/create-ciudadano.dto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability.factory';
+import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
+import { EmailService } from '@root/email/email.service';
 import { CiudadanoRepository } from './ciudadanos.repository';
 import { CiudadanosService } from './ciudadanos.service';
-import { EmailService } from '../email/email.service';
+import { CreateCiudadanoDto } from './dto/create-ciudadano.dto';
+import { Ciudadano } from './entities/ciudadano.entity';
 
 describe('CiudadanosService', () => {
   let service: CiudadanosService;

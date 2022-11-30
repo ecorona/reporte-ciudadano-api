@@ -1,12 +1,12 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
-import { CiudadanosService } from './ciudadanos.service';
-import { CiudadanoRepository } from './ciudadanos.repository';
-import { PublicCiudadanosController } from './public-ciudadanos/public-ciudadanos.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
 import { AdminCiudadanosController } from './admin-ciudadanos/admin-ciudadanos.controller';
-import { CaslCiudadanoAbilityFactory } from '../auth/casl/casl-ciudadano-ability.factory';
+import { CiudadanoRepository } from './ciudadanos.repository';
+import { CiudadanosService } from './ciudadanos.service';
 import { Ciudadano } from './entities/ciudadano.entity';
 import { PrivateCiudadanosController } from './private-ciudadanos/private-ciudadanos.controller';
+import { PublicCiudadanosController } from './public-ciudadanos/public-ciudadanos.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Ciudadano])],
