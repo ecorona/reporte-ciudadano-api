@@ -1,1 +1,1 @@
-export const SYSLOG_METADATA_KEY = 'syslog';
+export const SYSLOG_INCLUDE_METADATA_KEY = 'syslog-include';

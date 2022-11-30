@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { SYSLOG_METADATA_KEY } from './constants';
+import { SYSLOG_INCLUDE_METADATA_KEY } from './constants';
 /**
  * Metadatos del evento a almacenar
  */
@@ -69,7 +69,7 @@ export class SyslogMetaData {
  * @property {boolean} response   - El contenido de la respuesta si es que existe uno.
  */
 export const SyslogInclude = (eventName: string, metaData?: SyslogMetaData) => {
-  return SetMetadata(SYSLOG_METADATA_KEY, {
+  return SetMetadata(SYSLOG_INCLUDE_METADATA_KEY, {
     event: eventName,
     meta: {
       ...new SyslogMetaData(metaData),
