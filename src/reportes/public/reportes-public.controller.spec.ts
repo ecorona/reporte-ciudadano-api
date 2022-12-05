@@ -1,21 +1,26 @@
-import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
+import { ReporteRepository } from './../reportes.repository';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ReportesService } from './reportes.service';
-import { ReporteRepository } from './reportes.repository';
-import { CreateReporteDto } from './dto/create-reporte.dto';
+import { ReportesPublicController } from './reportes-public.controller';
+import { ReportesService } from '../reportes.service';
+import { CreateReporteDto } from '../dto/create-reporte.dto';
 import { Rol } from '@root/auth/roles/rol.enum';
+import { Ciudadano } from '@root/ciudadanos/entities/ciudadano.entity';
 
-describe('ReportesService', () => {
-  let service: ReportesService;
-  const mockReporteRepository = {
-    create: jest.fn(),
-    save: jest.fn(),
+describe('ReportesPublicController', () => {
+  let controller: ReportesPublicController;
+  const mockReporteRepository = {};
+  const mockReportesService = {
+    createPublic: jest.fn(),
   };
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [ReportesPublicController],
       providers: [
-        ReportesService,
+        {
+          provide: ReportesService,
+          useValue: mockReportesService,
+        },
         {
           provide: getRepositoryToken(ReporteRepository),
           useValue: mockReporteRepository,
@@ -23,15 +28,15 @@ describe('ReportesService', () => {
       ],
     }).compile();
 
-    service = module.get<ReportesService>(ReportesService);
+    controller = module.get<ReportesPublicController>(ReportesPublicController);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(controller).toBeDefined();
     //que tenga los metodos requeridos por la funcionalidad
-    expect(service.createPublic).toBeDefined();
-    expect(service.paginatePublic).toBeDefined();
-    expect(service.findOne).toBeDefined();
+    expect(controller.create).toBeDefined();
+    expect(controller.paginate).toBeDefined();
+    expect(controller.findOne).toBeDefined();
   });
 
   it('debe crear un reporte publico', async () => {
@@ -53,11 +58,10 @@ describe('ReportesService', () => {
       lng: 1,
       direccion: 'Direccion del reporte 1',
     };
-    await service.createPublic(reporte, ciudadano);
+    await controller.create(reporte, ciudadano);
     //que se hayan llamado las funciones del repositorio
-    expect(mockReporteRepository.create).toBeCalled();
-    expect(mockReporteRepository.save).toBeCalled();
+    expect(mockReportesService.createPublic).toBeCalled();
 
-    //TODO: evaluar mejor el resultado
+    //TODO: verificar mejor el resultado
   });
 });
