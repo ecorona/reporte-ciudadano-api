@@ -53,18 +53,20 @@ export class AuthService {
    * @returns token jwt
    */
   async login(
-    ciudadano: Ciudadano,
+    ciudadano: Partial<Ciudadano>,
     recuerdame: boolean,
   ): Promise<LoginCiudadanoResponse> {
     const tokenPayload: JwtPayloadDTO = {
       sub: ciudadano.id,
       email: ciudadano.email,
     };
+    console.log('logueado', ciudadano);
     return {
       access_token: this.jwtService.sign(tokenPayload, {
         expiresIn: recuerdame ? TOKEN_EXPIRES_IN_REMEMBER_ME : TOKEN_EXPIRES_IN,
         secret: this.configService.get<string>(ConfigKeys.JWT_SECRET),
       }),
+      ciudadano,
     };
   }
 }

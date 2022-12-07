@@ -34,7 +34,7 @@ DataSource.initialize().then(async (ds) => {
       '',
       'admin@xst.mx',
       '$2a$10$o1dj75agUMdKdcUrH1EX4O9.q6TrEczq2P86bB7FZjQTEcHaDM3q.',
-      'administrador'
+      'administrador,ciudadano'
     )
   ;`);
 

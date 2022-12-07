@@ -5,7 +5,13 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
 import { Rol } from '../src/auth/roles/rol.enum';
-
+/**
+ * Pruebas de integración con base de datos.
+ *
+ * * La base de datos debe estar lista para ejecutarse (mysql/docker-compose)
+ * * Los valores del .env deben estár configurados para conectarse a la base de datos.
+ * * La base de datos especificada en el .env será limpiada e inicializada con las migraciones.
+ */
 describe('CiudadanosController (e2e)', () => {
   let app: INestApplication;
 
@@ -34,15 +40,20 @@ describe('CiudadanosController (e2e)', () => {
         .expect(201)
         .expect('Content-Type', /json/)
         .then((response) => {
-          expect(response.body).toEqual(
-            expect.objectContaining({
-              id: expect.any(Number),
-              nombres: ciudadanoACrear.nombres,
-              apellidos: ciudadanoACrear.apellidos,
-              email: ciudadanoACrear.email,
-              roles: [Rol.Ciudadano],
-            }),
-          );
+          //evaluar los campos requeridos
+          expect(response.body.id).toEqual(expect.any(Number));
+          expect(response.body.nombres).toEqual(ciudadanoACrear.nombres);
+          expect(response.body.apellidos).toEqual(ciudadanoACrear.apellidos);
+          expect(response.body.email).toEqual(ciudadanoACrear.email);
+          expect(response.body.alias).toBeDefined();
+          expect(response.body.createdAt).toBeDefined();
+          expect(response.body.deletedAt).toBeDefined();
+          expect(response.body.prefijoTelefono).toBeDefined();
+          expect(response.body.telefono).toBeDefined();
+          expect(response.body.uuid).toEqual(expect.any(String));
+          expect(response.body.uuid.length).toEqual(36);
+          expect(response.body.version).toEqual(1);
+          expect(response.body.roles).toEqual(expect.any(Array<Rol>));
         });
     });
 
@@ -84,9 +95,11 @@ describe('CiudadanosController (e2e)', () => {
         .expect(201)
         .then((response) => {
           access_token_ciudadano = response.body?.access_token || undefined;
+
           return expect(response.body).toEqual(
             expect.objectContaining({
               access_token: expect.any(String),
+              ciudadano: expect.any(Object),
             }),
           );
         });

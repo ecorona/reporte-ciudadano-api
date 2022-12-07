@@ -2,7 +2,6 @@ import { config } from 'dotenv';
 config();
 
 import DataSource from './ormconfig';
-
 DataSource.initialize().then(async (ds) => {
   await ds.query(`DROP PROCEDURE IF EXISTS \`drop_tables\``);
   await ds.query(`
@@ -22,8 +21,7 @@ DataSource.initialize().then(async (ds) => {
       SET FOREIGN_KEY_CHECKS = 1;
     END
   `);
-  const result = await ds.query(`call drop_tables()`);
+  await ds.query(`call drop_tables()`);
   await ds.query(`DROP PROCEDURE IF EXISTS \`drop_tables\``);
-  console.log('DROP TABLES: ', result);
   process.exit(0);
 });

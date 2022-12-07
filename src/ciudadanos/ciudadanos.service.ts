@@ -24,14 +24,25 @@ export class CiudadanosService implements ICiudadanosService {
   ) {}
 
   async suscribir(nuevoCiudadano: CreateCiudadanoDto): Promise<Ciudadano> {
+    //preparar datos requeridos por el entity
     const ciudadanoACrear = this.ciudadanoRepository.create(nuevoCiudadano);
     ciudadanoACrear.password = await this.encriptarPassword(
       ciudadanoACrear.password,
     );
+    //roles que tendrá
     ciudadanoACrear.roles = [Rol.Ciudadano];
+
+    //si es el primer ciudadano, darle el rol de administrador
+    const totalCiudadanos = await this.ciudadanoRepository.find();
+    if (totalCiudadanos.length === 0) {
+      ciudadanoACrear.roles.unshift(Rol.Administrador);
+    }
+
+    //insertarlo en la base de datos.
     const ciudadanoCreado = await this.ciudadanoRepository.save(
       ciudadanoACrear,
     );
+
     //enviar un email al ciudadano con el service de email
     await this.emailService.enviarEmail({
       email: ciudadanoCreado.email,
