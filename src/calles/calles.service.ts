@@ -22,10 +22,18 @@ export class CallesService {
   }
 
   update(id: number, updateCalleDto: UpdateCalleDto) {
-    return `This action updates a #${id} calle`;
+    return `This action updates a #${id} calle, ${updateCalleDto}`;
   }
 
   remove(id: number) {
     return `This action removes a #${id} calle`;
+  }
+
+  async fundarCalle(calle: string, ciudadanoId: number): Promise<Calle> {
+    const calleACrear = this.callesRepository.create();
+    calleACrear.activo = false;
+    calleACrear.nombre = calle;
+    calleACrear.ciudadanoFundadorId = ciudadanoId;
+    return this.callesRepository.save(calleACrear);
   }
 }

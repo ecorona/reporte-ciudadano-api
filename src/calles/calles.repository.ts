@@ -9,4 +9,12 @@ export class CallesRepository extends Repository<Calle> {
   ) {
     super(calle.target, calle.manager, calle.queryRunner);
   }
+
+  async createAndSave(calle: Calle): Promise<Calle> {
+    return await this.save(calle);
+  }
+
+  findById(id: number): Promise<Calle> {
+    return this.findOne({ where: { id } });
+  }
 }
