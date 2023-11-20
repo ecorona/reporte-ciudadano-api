@@ -1,5 +1,5 @@
 import { ForbiddenError } from '@casl/ability';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Action } from '@root/auth/casl/actions.enum';
 import { CaslCiudadanoAbilityFactory } from '@root/auth/casl/casl-ciudadano-ability.factory';
@@ -16,6 +16,7 @@ import { Ciudadano } from './entities/ciudadano.entity';
 
 @Injectable()
 export class CiudadanosService implements ICiudadanosService {
+  private logger = new Logger(CiudadanosService.name);
   constructor(
     @InjectRepository(CiudadanoRepository)
     private readonly ciudadanoRepository: CiudadanoRepository,
@@ -114,5 +115,43 @@ export class CiudadanosService implements ICiudadanosService {
     passwordHash: string,
   ): Promise<boolean> {
     return compare(password, passwordHash);
+  }
+
+  //metodo para notificar a un ciudadano
+  async notificarCiudadano(
+    ciudadano: Ciudadano,
+    mensaje: string,
+  ): Promise<{ notificado: boolean; smtpResponse: { uuid: string } }> {
+    //enviar un email al ciudadano con el service de email
+    const response = await this.emailService.enviarEmail({
+      email: ciudadano.email,
+      subject: 'Notificación de la comunidad',
+      template: 'notification',
+      context: {
+        mensaje,
+      },
+    });
+    return {
+      notificado: true,
+      smtpResponse: { uuid: response },
+    };
+  }
+
+  async aceptarPoliticas(
+    ciudadanoId: number,
+  ): Promise<{ result: boolean; error?: string }> {
+    try {
+      //buscar al ciudadano, si no existe, throw not found, si existe, continuar
+      const ciudadano = await this.ciudadanoRepository.getById(ciudadanoId);
+      if (!ciudadano) {
+        throw new Error('Ciudadano no encontrado');
+      }
+      ciudadano.aceptaPoliticas = true;
+      await this.ciudadanoRepository.save(ciudadano);
+      return { result: true };
+    } catch (error) {
+      this.logger.error(error);
+      return { result: false, error: error.message || 'Error' };
+    }
   }
 }

@@ -21,14 +21,28 @@ describe('CiudadanosService', () => {
       ciudadanoAcrear.password = dto.password;
       ciudadanoAcrear.nombres = dto.nombres;
       ciudadanoAcrear.apellidos = dto.apellidos;
+      ciudadanoAcrear.aceptaPoliticas = false;
       return ciudadanoAcrear;
     }),
     //regresa una instancia del ciudadano creado, con id, createdAt, updatedAt, version
     save: jest.fn().mockImplementation((ciudadano: Ciudadano) => {
-      ciudadano.id = 1;
-      ciudadano.createdAt = new Date();
+      if (!ciudadano.id) {
+        ciudadano.id = 1;
+      }
+      if (!ciudadano.createdAt) {
+        ciudadano.createdAt = new Date();
+      }
       ciudadano.updatedAt = new Date();
-      ciudadano.version = 1;
+      ciudadano.version = ciudadano.version ? ciudadano.version + 1 : 1;
+      return ciudadano;
+    }),
+    find: jest.fn().mockImplementation(() => {
+      return [];
+    }),
+    getById: jest.fn().mockImplementation((id: number) => {
+      const ciudadano = new Ciudadano();
+      ciudadano.id = id;
+      ciudadano.email = 'ciudadanox@xst.mx';
       return ciudadano;
     }),
   };
@@ -68,6 +82,7 @@ describe('CiudadanosService', () => {
     expect(service).toHaveProperty('actualizarCiudadano');
     expect(service).toHaveProperty('encriptarPassword');
     expect(service).toHaveProperty('validarPassword');
+    expect(service).toHaveProperty('aceptarPoliticas');
   });
 
   //verificar que el metodo de suscribir, retorne un Ciudadano
@@ -95,5 +110,47 @@ describe('CiudadanosService', () => {
     expect(
       await service.validarPassword('password', nuevoCiudadano.password),
     ).toBe(true);
+  });
+
+  //verificar que la clase contenga el metodo notificarCiudadano
+  it('should have the method notificarCiudadano', () => {
+    expect(service).toHaveProperty('notificarCiudadano');
+  });
+
+  //al notificar un ciudadano, debe retornar un objeto con el email y el mensaje y notificado: boolean para saber si se notificó
+  it('notificarCiudadano should return an object with email, message and notificado', async () => {
+    const mockCiudadano = new Ciudadano();
+    mockCiudadano.id = 1;
+    mockCiudadano.email = 'ecorona@xst.mx';
+    mockCiudadano.nombres = 'test';
+    mockCiudadano.apellidos = 'test';
+    const mockMensaje = 'test';
+    const notificacion = await service.notificarCiudadano(
+      mockCiudadano,
+      mockMensaje,
+    );
+    //verificar que la funcion notificarCiudadano del service, llame tambien a la de email
+    //y siempre lleguien ciertos datos a esa funciona
+    expect(mockEmailService.enviarEmail).toBeCalled();
+    expect(notificacion).toHaveProperty('notificado');
+    //evaluar que la respuesta contenga smtpResponse y dentro uuid
+    expect(notificacion).toHaveProperty('smtpResponse');
+    //verificar que notificacion.smtpResponse tenga la propiedad uuid
+    //ya que se utiliza para identificar el email enviado
+    expect(notificacion.smtpResponse).toHaveProperty('uuid');
+
+    //verificar que notificacion.notificado sea true o false
+    expect(notificacion.notificado).toBe(true || false);
+  });
+
+  //aceptar politicas debe retornar un objeto { result: boolean }
+  it('aceptarPoliticas should return an object with the result: true', async () => {
+    const mockCiudadano = new Ciudadano();
+    mockCiudadano.id = 1;
+    const aceptacion = await service.aceptarPoliticas(mockCiudadano.id);
+    expect(mockCiudadanoRepository.getById).toBeCalledWith(mockCiudadano.id);
+    expect(mockCiudadanoRepository.save).toBeCalled();
+    expect(aceptacion).toHaveProperty('result');
+    expect(aceptacion.result).toBe(true);
   });
 });

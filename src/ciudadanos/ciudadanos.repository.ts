@@ -13,6 +13,10 @@ export class CiudadanoRepository extends Repository<Ciudadano> {
     super(repository.target, repository.manager, repository.queryRunner);
   }
 
+  getById(id: number): Promise<Ciudadano> {
+    return this.findOne({ where: { id } });
+  }
+
   getByEmail(email: string): Promise<Ciudadano> {
     return this.findOne({ where: { email: email.toLowerCase() } });
   }

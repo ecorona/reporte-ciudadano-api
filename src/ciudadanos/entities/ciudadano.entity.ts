@@ -87,4 +87,13 @@ export class Ciudadano extends CommonEntity {
     type: 'simple-array',
   })
   roles: Rol[];
+
+  /**
+   * Si el ciudadano ha aceptado las políticas de privacidad
+   */
+  @Column({
+    type: 'boolean',
+    default: false,
+  })
+  aceptaPoliticas: boolean;
 }

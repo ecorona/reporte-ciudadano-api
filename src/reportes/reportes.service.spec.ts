@@ -45,6 +45,7 @@ describe('ReportesService', () => {
       apellidos: 'Perez',
       email: 'juan@perez@gmail.com',
       roles: [Rol.Ciudadano],
+      aceptaPoliticas: true,
     };
     const reporte: CreateReporteDto = {
       descripcion: 'Descripcion del reporte 1',

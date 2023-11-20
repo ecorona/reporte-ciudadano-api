@@ -10,5 +10,8 @@ export class EmailService {
     context: any;
   }) {
     this.logger.verbose(`Enviando email a: ${data.email}`);
+
+    //retornar un uuid falso
+    return '9eac29b0-292b-4106-a166-97645a42a023';
   }
 }
