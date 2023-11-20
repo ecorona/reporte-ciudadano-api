@@ -36,7 +36,12 @@ export class AuthController {
    * @throws {UnauthorizedException} si el ciudadano no está activo
    */
   @Public()
-  @Throttle(INTENTOS, TIEMPO)
+  @Throttle({
+    default: {
+      limit: INTENTOS,
+      ttl: TIEMPO,
+    },
+  })
   @ApiOperation({
     summary: 'Inicia la sesión del ciudadano',
     description: 'Inicia la sesión del ciudadano',

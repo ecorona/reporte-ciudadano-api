@@ -5,7 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CiudadanosModule } from './ciudadanos/ciudadanos.module';
 import { AuthModule } from './auth/auth.module';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
 import * as Joi from 'joi';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt/jwt-auth.guard';
@@ -30,13 +30,16 @@ import { SyslogModule } from './syslog/syslog.module';
 import { ConfigKeys } from './app.config-keys';
 import { SyslogInterceptor } from './syslog/syslog.interceptor';
 import { SyslogEntity } from './syslog/syslog.entity';
+import { ThrottlerBehindProxyGuard } from './auth/guards/throttler-behind-proxy.guard';
 
 @Module({
   imports: [
-    ThrottlerModule.forRoot({
-      ttl: THROTTLE_TTL_GLOBAL,
-      limit: THROTTLE_LIMIT_GLOBAL,
-    }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: THROTTLE_TTL_GLOBAL,
+        limit: THROTTLE_LIMIT_GLOBAL,
+      },
+    ]),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         NODE_ENV: Joi.string()
@@ -111,7 +114,7 @@ import { SyslogEntity } from './syslog/syslog.entity';
     //según la configuración de ThrottlerModule
     {
       provide: APP_GUARD,
-      useClass: ThrottlerGuard,
+      useClass: ThrottlerBehindProxyGuard,
     },
     {
       provide: APP_FILTER,
