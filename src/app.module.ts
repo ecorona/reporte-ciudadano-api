@@ -52,7 +52,7 @@ import { ThrottlerBehindProxyGuard } from './auth/guards/throttler-behind-proxy.
         MYSQL_PASSWORD: Joi.string().default('password'),
         MYSQL_HOST: Joi.string().default('localhost'),
         MYSQL_PORT: Joi.number().default(3306),
-        MYSQL_DATABASE: Joi.string().default('reporteCiudadano'),
+        MYSQL_DATABASE: Joi.string().default('reporteciudadano'),
         ENABLE_SYSLOG: Joi.boolean().default(true),
       }),
       isGlobal: true,

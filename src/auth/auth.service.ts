@@ -60,7 +60,6 @@ export class AuthService {
       sub: ciudadano.id,
       email: ciudadano.email,
     };
-    console.log('logueado', ciudadano);
     return {
       access_token: this.jwtService.sign(tokenPayload, {
         expiresIn: recuerdame ? TOKEN_EXPIRES_IN_REMEMBER_ME : TOKEN_EXPIRES_IN,
